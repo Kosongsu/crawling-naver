@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>키워드 검색</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <form [formGroup]="keywordForm" (ngSubmit)="submitForm()" novalidate>
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">키워드</ion-label>
+            <ion-input placeholder="키워드를 넣으세요." formControlName="keyword"></ion-input>
+          </ion-item>
+          <span class="err_sign" *ngIf="keywordForm.controls['keyword'].invalid">{{getKeywordErrorMessage()}}</span>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" [disabled]="!keywordForm.valid" expand="block">검색</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-list>
+      </form>
+      <ion-item-divider>
+        <ion-label>
+          인기검색어
+        </ion-label>
+      </ion-item-divider>
+      <ion-chip *ngFor="let tag of tags" (click)="setSearchTerm(tag.name)">
+        <ion-label>{{tag.name}}</ion-label>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card> 
+  <ion-card *ngIf="doShow">
+    <ion-card-header>
+      <ion-card-title>연관검색어</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row style="background: #3880ff; color: #fff;" class="ion-align-items-center">
+          <ion-col>
+            <div class="ion-text-center">
+              키워드
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-center">
+              검색횟수
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-center">
+              클릭률(CTR)
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-center">
+              블로그 수
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-center">
+              쇼핑상품 수
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let keyword of keywords" (click)="setSearchTerm(keyword.word)">
+          <ion-col>
+            <ion-chip>
+              {{keyword.word}}
+            </ion-chip>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-end">
+              {{keyword.totalCnt | number}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-end">
+              {{keyword.clickCnt | number}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-end">
+              {{keyword.blogsTotal  | number}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div class="ion-text-end">
+              {{keyword.shopsTotal  | number}}
+            </div>
+          </ion-col>       
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>  
+  <ion-grid *ngIf="doShow">
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>인기블로그</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list *ngFor="let item of blogs">
+              <ion-item button (click)="openlink(item.link)">
+                <div [innerHTML]="item.title"></div>  
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>  
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>인기상품</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list *ngFor="let item of shops">
+              <ion-item button (click)="openlink(item.link)">
+                <div [innerHTML]="item.title"></div>  
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>         
+      </ion-col>
+    </ion-row>
+  </ion-grid>   
+</ion-content>
