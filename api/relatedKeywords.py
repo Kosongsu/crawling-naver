@@ -38,17 +38,13 @@ def naverRelKwdStat(keyword):
     relKwdStat = RelKwdStat.RelKwdStat(NAVER_AD_API_URL, NAVER_AD_ACCESS_LICENSE, NAVER_AD_SECRET_KEY, NAVER_AD_CUSTOMER_ID)
     kwDataList = relKwdStat.get_rel_kwd_stat_list(None, hintKeywords=keyword, showDetail='1')
     for idx, outdata in enumerate(kwDataList):
-        time.sleep(uniform(0.3, 0.5)) # Naver search API limit - Daily 2500 Max 10/sec  
-        relKeyword = outdata.relKeyword # A related keyword
-        monthlyPcQcCnt = outdata.monthlyPcQcCnt # Sum of PC query counts in recent 30 days.
-        monthlyMobileQcCnt = outdata.monthlyMobileQcCnt # Sum of Mobile query counts in recent 30 days. 
-        # monthlyAvePcClkCnt = outdata.monthlyAvePcClkCnt # Average PC click counts per keyword's ad in recent 4 weeks
-        # monthlyAveMobileClkCnt = outdata.monthlyAveMobileClkCnt # Average Mobile click counts per keyword's ad in recent 4 weeks. 
-        monthlyAvePcCtr = outdata.monthlyAvePcCtr   # Click-through rate of PC in recent 4 weeks.
-        monthlyAveMobileCtr = outdata.monthlyAveMobileCtr # Click-through rate of Mobile in recent 4 weeks.
-        # plAvgDepth = outdata.plAvgDepth # Average depth of PC ad in recent 4 weeks. 
-        compIdx = outdata.compIdx   # A competitiveness index based on PC ad. 
-
+        time.sleep(uniform(0.3, 0.5)) 
+        relKeyword = outdata.relKeyword 
+        monthlyPcQcCnt = outdata.monthlyPcQcCnt 
+        monthlyMobileQcCnt = outdata.monthlyMobileQcCnt
+        monthlyAvePcCtr = outdata.monthlyAvePcCtr  
+        monthlyAveMobileCtr = outdata.monthlyAveMobileCtr 
+        compIdx = outdata.compIdx  
         blogsTotal = getSearchCount(relKeyword, NAVER_BLOG_API_URL)
         shopsTotal = getSearchCount(relKeyword, NAVER_SHOP_API_URL)                 
 
@@ -62,3 +58,5 @@ def naverRelKwdStat(keyword):
 
 relKeyword = '마스크'
 naverRelKwdStat(relKeyword)
+
+

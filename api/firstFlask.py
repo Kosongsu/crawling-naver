@@ -18,7 +18,7 @@ popular10lists = [{'name' : '헤드셋'},
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>The First Flask</h1><p>Just get a response from Flask</p>"
+    return "<h1>The First Flask</h1><p>hello Flask</p>"
 
 @app.route('/getJSONlists', methods=['GET'])
 def api_all():
