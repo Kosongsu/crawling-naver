@@ -3,6 +3,7 @@ from random import uniform
 import urllib.request
 import json
 from powernad.API import RelKwdStat
+#jsonpickle
 
 client_id = "Vb7HEhsKJpmeY6RjbIzP"
 client_secret = "iwDWmI7XEy"
@@ -56,7 +57,7 @@ def naverRelKwdStat(keyword):
             if(idx >= LIMIT):
                 break
 
-relKeyword = '마스크'
+relKeyword = '핸드폰'
 naverRelKwdStat(relKeyword)
 
 
