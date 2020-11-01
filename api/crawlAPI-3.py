@@ -23,6 +23,7 @@ LIMIT = 10
 
 app = flask.Flask(__name__)
 
+# 리스트로 가져옴
 def getSearchList(keyword, URL):
     searchList = []
     encText = urllib.parse.quote(keyword)
@@ -42,6 +43,7 @@ def getSearchList(keyword, URL):
     print(searchList)
     return searchList
 
+# blog, shop 개수
 def getSearchCount(keyword, URL):
     encText = urllib.parse.quote(keyword)
     url = URL + encText
@@ -121,7 +123,7 @@ def relatedKeywords():
 def getBlogs():
     if 'keyword' in request.args:
         keyword = str(request.args['keyword'])
-    else:e
+    else:
         return "Error: keyword field was not provided. Please enter a kyword."
 
     return getSearchList(keyword, NAVER_BLOG_API_URL)
@@ -136,4 +138,4 @@ def getShops():
 
     return getSearchList(keyword, NAVER_SHOP_API_URL)
 
-app.run()
+app.run(port='5050')

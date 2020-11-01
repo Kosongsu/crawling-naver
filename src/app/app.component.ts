@@ -21,9 +21,13 @@ export class AppComponent implements OnInit {
       title: '검색',
       url: '/search',
       icon: 'search'
+    },
+    {
+      title: '인기상품',
+      url: '/category',
+      icon: 'gift'
     }
   ];
-  // public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
     private platform: Platform,

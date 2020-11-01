@@ -7,10 +7,10 @@ client_secret = "iwDWmI7XEy"
 NAVER_BLOG_API_URL = "https://openapi.naver.com/v1/search/blog?query="
 NAVER_SHOP_API_URL = "https://openapi.naver.com/v1/search/blog?query="
 
-Keyword = '속옷'
+relKeyword = '마스크'
 
-def getSearchCount(Keyword, URL):
-    encText = urllib.parse.quote(Keyword)
+def getSearchCount(keyword, URL):
+    encText = urllib.parse.quote(keyword)
     url = URL + encText
     request = urllib.request.Request(url)
     request.add_header("X-Naver-Client-Id",client_id)
@@ -25,15 +25,16 @@ def getSearchCount(Keyword, URL):
     for item in items:
         title = item['title']
         link = item['link']
-        print('Title : ', title, 'link : ', link)
+        print('Title : ', title, ' Link : ', link)
 
     if(rescode==200):
         totalCount = jsonDict['total']
     else:
-        totalCount = 0
+        totalCount = 0   
     return totalCount
+    
 
-blogsTotal = getSearchCount(Keyword, NAVER_BLOG_API_URL)
-shopsTotal = getSearchCount(Keyword, NAVER_SHOP_API_URL)
-print('Blog Total : ', blogsTotal)
-print('Shop Total : ', shopsTotal)
+blogsTotal = getSearchCount(relKeyword, NAVER_BLOG_API_URL)
+shopsTotal = getSearchCount(relKeyword, NAVER_SHOP_API_URL)
+print('Blog total : ', blogsTotal)
+print('Shop total : ', shopsTotal)
