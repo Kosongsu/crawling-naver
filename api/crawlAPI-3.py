@@ -1,4 +1,5 @@
 import flask
+from flask_cors import CORS, cross_origin
 import json
 from functools import wraps
 from flask import request, Response
@@ -19,7 +20,7 @@ NAVER_AD_API_URL = 'https://api.naver.com'
 NAVER_BLOG_API_URL = 'https://openapi.naver.com/v1/search/blog?query='
 NAVER_SHOP_API_URL = 'https://openapi.naver.com/v1/search/shop?query='
 
-LIMIT = 10
+LIMIT = 0
 
 app = flask.Flask(__name__)
 
@@ -92,7 +93,7 @@ def relatedKeywords():
     if 'keyword' in request.args:
         keyword = str(request.args['keyword'])
     else:
-        return "Error: keyword field was not provided. Please enter a keyword."
+        return "Error: keyword field"
 
     relKwdStat = RelKwdStat.RelKwdStat(NAVER_AD_API_URL, NAVER_AD_ACCESS_LICENSE, NAVER_AD_SECRET_KEY, NAVER_AD_CUSTOMER_ID)
     kwDataList = relKwdStat.get_rel_kwd_stat_list(None, hintKeywords=keyword, showDetail='1')
@@ -124,7 +125,7 @@ def getBlogs():
     if 'keyword' in request.args:
         keyword = str(request.args['keyword'])
     else:
-        return "Error: keyword field was not provided. Please enter a kyword."
+        return "Error: keyword field"
 
     return getSearchList(keyword, NAVER_BLOG_API_URL)
 
@@ -134,8 +135,14 @@ def getShops():
     if 'keyword' in request.args:
         keyword = str(request.args['keyword'])
     else:
-        return "Error: keyword field was not provided. Please enter a keyword."
+        return "Error: keyword field"
 
     return getSearchList(keyword, NAVER_SHOP_API_URL)
 
-app.run(port='5050')
+#app.run()
+CORS(app)
+
+# https://webisfree.com/2020-01-01/python-flask%EC%97%90%EC%84%9C-cors-cross-origin-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0
+
+if __name__ == '__main__':
+    app.run()

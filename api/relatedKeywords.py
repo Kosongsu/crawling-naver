@@ -1,4 +1,5 @@
 import time
+import re
 from random import uniform
 import urllib.request
 import json
@@ -35,6 +36,7 @@ def getSearchCount(keyword, URL):
     return totalCount
     
 def naverRelKwdStat(keyword):
+    keyword = keyword.replace("%20","")
     relKwdStat = RelKwdStat.RelKwdStat(NAVER_AD_API_URL, NAVER_AD_ACCESS_LICENSE, NAVER_AD_SECRET_KEY, NAVER_AD_CUSTOMER_ID)
     kwDataList = relKwdStat.get_rel_kwd_stat_list(None, hintKeywords=keyword, showDetail='1')
     for idx, outdata in enumerate(kwDataList):
@@ -56,6 +58,6 @@ def naverRelKwdStat(keyword):
             if(idx >= LIMIT):
                 break
 
-relKeyword = '마스크'
+relKeyword = '에어팟프로'
 naverRelKwdStat(relKeyword)
 

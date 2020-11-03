@@ -24,14 +24,14 @@
           </ion-row>
         </ion-list>
       </form>
-      <ion-item-divider>
+      <!-- <ion-item-divider>
         <ion-label>
           인기검색어
         </ion-label>
       </ion-item-divider>
       <ion-chip *ngFor="let tag of tags" (click)="setSearchTerm(tag.name)">
         <ion-label>{{tag.name}}</ion-label>
-      </ion-chip>
+      </ion-chip> -->
     </ion-card-content>
   </ion-card> 
   <ion-card *ngIf="doShow">
@@ -51,11 +51,11 @@
               검색횟수
             </div>
           </ion-col>
-          <ion-col>
+          <!-- <ion-col>
             <div class="ion-text-center">
               클릭률(CTR)
             </div>
-          </ion-col>
+          </ion-col> -->
           <ion-col>
             <div class="ion-text-center">
               블로그 수
@@ -78,11 +78,11 @@
               {{keyword.totalCnt | number}}
             </div>
           </ion-col>
-          <ion-col>
+          <!-- <ion-col>
             <div class="ion-text-end">
               {{keyword.clickCnt | number}}
             </div>
-          </ion-col>
+          </ion-col> -->
           <ion-col>
             <div class="ion-text-end">
               {{keyword.blogsTotal  | number}}

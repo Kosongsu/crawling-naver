@@ -18,7 +18,7 @@ export class SearchPage implements OnInit {
   public keywords: Keyword[] = [];
   public blogs: Blog[] = [];
   public shops: Shop[] = [];
-  public BASE_URL: string = 'http://127.0.0.1:5050';
+  public BASE_URL: string = 'http://127.0.0.1:5000';
   public POPULAR_URL = this.BASE_URL + '/getPopularlists';
   public KEYWORD_URL = this.BASE_URL + '/relatedKeywords?keyword=';
   public BLOG_URL = this.BASE_URL + '/getBlogs?keyword=';
@@ -49,8 +49,8 @@ export class SearchPage implements OnInit {
   }
   submitForm() {
     this.doShow = true;  
-    var keyword = this.keywordForm.value.keyword.replace(" ", "");   
-
+    var keyword = this.keywordForm.value.keyword.replaceAll(" ", "");
+    
     this.http.get(this.KEYWORD_URL+keyword)
     .subscribe((result) => {
       this.keywords = <Keyword[]>result;
