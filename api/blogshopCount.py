@@ -1,6 +1,12 @@
 import urllib.request
 import json
 
+client_id = "Vb7HEhsKJpmeY6RjbIzP"
+client_secret = "iwDWmI7XEy"
+
+NAVER_BLOG_API_URL = "https://openapi.naver.com/v1/search/blog?query="
+NAVER_SHOP_API_URL = "https://openapi.naver.com/v1/search/blog?query="
+
 relKeyword = '마스크'
 
 def getSearchCount(keyword, URL):

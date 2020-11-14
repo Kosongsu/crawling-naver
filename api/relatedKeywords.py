@@ -5,7 +5,15 @@ import urllib.request
 import json
 from powernad.API import RelKwdStat
 
+client_id = "Vb7HEhsKJpmeY6RjbIzP"
+client_secret = "iwDWmI7XEy"
+NAVER_AD_CUSTOMER_ID = "2042427"
+NAVER_AD_ACCESS_LICENSE = "01000000005372a15dfc223ec4f7e8372b9e1ffc5365139cd1572b39aba979b982403edf41"
+NAVER_AD_SECRET_KEY = "AQAAAABTcqFd/CI+xPfoNyueH/xTcWu35E9aqdhVG/7uJGVrog=="
 
+NAVER_AD_API_URL = "https://api.naver.com"
+NAVER_BLOG_API_URL = "https://openapi.naver.com/v1/search/blog?query="
+NAVER_SHOP_API_URL = "https://openapi.naver.com/v1/search/blog?query="
 
 LIMIT = 30
 keywords = []
